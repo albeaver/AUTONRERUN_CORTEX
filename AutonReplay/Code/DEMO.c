@@ -68,6 +68,9 @@ void pre_auton()
 
 task autonomous()
 {
+// This is the generated code on a test robot
+// Delete below the following line to the end of autonomous and paste your generated code
+///////////////////////////
 wait1Msec(730);
 motor[port8] = 19;
 motor[port9] = 19;
@@ -201,15 +204,17 @@ motor[port9] = 15;
 
 task usercontrol()
 {
-	clearDebugStream();
+	clearDebugStream(); //Start your code over fresh
 	// User control code here, inside the loop
 	int leftpower;
 	int rightpower;
 
 	while (true)
 	{
-		AR_BEGINSegment();
-		// ARCADE DRIVE
+		AR_BEGINSegment(); //Does the correct initialization at the start of the loop
+		// ARCADE DRIVE (https://renegaderobotics.org/robotc-chassis-programming/)
+		
+		// Learn about setting motor power once at https://renegaderobotics.org/set-motor-power-just/
 		leftpower = (vexRT[Ch3] + vexRT[Ch4]);
 		rightpower = (vexRT[Ch3] - vexRT[Ch4]);
 
@@ -226,7 +231,7 @@ task usercontrol()
 
 		// SET MOTORS TO RIGHT POWER AND LEFT POWER HERE
 		motor[leftBack]=leftpower;
-		AR_GenerateMotorPower(leftBack,leftpower);
+		AR_GenerateMotorPower(leftBack,leftpower); // Adds motor power to queue
 		motor[leftFront] = leftpower;
 		AR_GenerateMotorPower(leftFront,leftpower);
 		motor[rightBack] = rightpower;
@@ -234,6 +239,6 @@ task usercontrol()
 		motor[rightFront] = rightpower;
 		AR_GenerateMotorPower(rightFront, rightpower);
 
-		AR_ENDSegment();
+		AR_ENDSegment(); // Calculations at end of the loop
 	}
 }
